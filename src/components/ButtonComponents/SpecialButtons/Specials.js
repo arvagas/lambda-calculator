@@ -1,11 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 
 //import any components needed
 
 //Import your array data to from the provided data file
+import {specials} from '../src/data'
 
 const Specials = () => {
   // STEP 2 - add the imported data to state
+  const [specialsState, setSpecialsState] = useState(specials)
 
   return (
     <div>
