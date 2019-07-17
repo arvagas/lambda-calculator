@@ -30,7 +30,7 @@ function App() {
         {/* STEP 4 - Render your components here and be sure to properly import/export all files */}
         <div>
           <Specials specialsState={specialsState} setSpecialsState={setSpecialsState} specials={specials}/>
-          <Numbers numbersState={numbersState} setNumbersState={setNumbersState} numbers={numbers}/>
+          <Numbers numbersState={numbersState} setNumbersState={setNumbersState} numbers={numbers} setOutputState={setOutputState}/>
         </div>
         <Operators operatorsState={operatorsState} setOperatorsState={setOperatorsState} operators={operators}/>
       </div>
