@@ -10,6 +10,7 @@ import Operators from './components/ButtonComponents/OperatorButtons/Operators'
 import Specials from './components/ButtonComponents/SpecialButtons/Specials'
 import Display from './components/DisplayComponents/Display'
 import {numbers, operators, specials} from './data'
+import { tryStatement } from "@babel/types";
 
 function App() {
   // STEP 5 - After you get the components displaying using the provided data file, write your state hooks here.
@@ -22,6 +23,20 @@ function App() {
   const [operatorsState, setOperatorsState] = useState(operators)
   const [specialsState, setSpecialsState] = useState(specials)
 
+  function math(opSym, num1, num2) {
+    const intNum1 = parseInt(num1)
+    const intNum2 = parseInt(num2)
+    let result = 0
+
+    if (opSym === '+') result = intNum1 + intNum2
+    else if (opSym === '-') result = intNum1 - intNum2
+    else if (opSym === '*') result = intNum1 * intNum2
+    else if (opSym === '/') result = intNum1 / intNum2
+    else if (opSym === '=') result = intNum1
+
+    setOutputState(result)
+  }
+
   return (
     <div className="container">
       <Logo />
@@ -32,7 +47,7 @@ function App() {
           <Specials specialsState={specialsState} setSpecialsState={setSpecialsState} specials={specials}/>
           <Numbers numbersState={numbersState} setNumbersState={setNumbersState} numbers={numbers} setOutputState={setOutputState}/>
         </div>
-        <Operators operatorsState={operatorsState} setOperatorsState={setOperatorsState} operators={operators}/>
+        <Operators operatorsState={operatorsState} setOperatorsState={setOperatorsState} operators={operators} outputState={outputState} math={math} />
       </div>
     </div>
   );
