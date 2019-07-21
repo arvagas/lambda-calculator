@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./App.css";
 // STEP 4 - import the button and display components
 // Don't forget to import any extra css/scss files you build into the correct component
@@ -9,7 +9,6 @@ import Numbers from './components/ButtonComponents/NumberButtons/Numbers'
 import Operators from './components/ButtonComponents/OperatorButtons/Operators'
 import Specials from './components/ButtonComponents/SpecialButtons/Specials'
 import Display from './components/DisplayComponents/Display'
-import {numbers, operators, specials} from './data'
 
 function App() {
   // STEP 5 - After you get the components displaying using the provided data file, write your state hooks here.
@@ -18,21 +17,27 @@ function App() {
   // the "5" button, or the operator if they click one of those buttons) and then call your setter function to update state.
   // Don't forget to pass the functions (and any additional data needed) to the components as props
   const [outputState, setOutputState] = useState(0)
-  const [numbersState, setNumbersState] = useState(numbers)
-  const [operatorsState, setOperatorsState] = useState(operators)
-  const [specialsState, setSpecialsState] = useState(specials)
+  const [num, setNum] = useState(0)
+  const [secNum, setSecNum] = useState(0)
+  const [op, setOp] = useState('')
+  const [spec, setSpec] = useState('')
 
   function math(numInput) {
     const intNum1 = parseInt(outputState)
     const intNum2 = parseInt(numInput)
   
-    if (operatorsState === '+') setOutputState(intNum1 + intNum2)
-    else if (operatorsState === '-') setOutputState(intNum1 - intNum2)
-    else if (operatorsState === '*') setOutputState(intNum1 * intNum2)
-    else if (operatorsState === '/') setOutputState(intNum1 / intNum2)
-    else if (operatorsState === '=') setOutputState(intNum1)
-    else if (!operatorsState) return
+    // if (operatorsState === '+') setOutputState(intNum1 + intNum2)
+    // else if (operatorsState === '-') setOutputState(intNum1 - intNum2)
+    // else if (operatorsState === '*') setOutputState(intNum1 * intNum2)
+    // else if (operatorsState === '/') setOutputState(intNum1 / intNum2)
+    // else if (operatorsState === '=') setOutputState(intNum1)
+    // else if (!operatorsState) return
   }
+
+  useEffect(() => {
+    setOutputState(num)
+    // if()
+  },[num])
 
   return (
     <div className="container">
@@ -41,10 +46,10 @@ function App() {
       <div className="App">
         {/* STEP 4 - Render your components here and be sure to properly import/export all files */}
         <div>
-          <Specials specialsState={specialsState} setSpecialsState={setSpecialsState} specials={specials}/>
-          <Numbers numbersState={numbersState} setNumbersState={setNumbersState} numbers={numbers} setOutputState={setOutputState} operatorsState={operatorsState} math={math}/>
+          <Specials />
+          <Numbers outputState={outputState} setOutputState={setOutputState} math={math} />
         </div>
-        <Operators operatorsState={operatorsState} setOperatorsState={setOperatorsState} operators={operators} />
+        <Operators />
       </div>
     </div>
   );
