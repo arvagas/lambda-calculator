@@ -6,10 +6,7 @@ const NumberButton = ({number, numbersState, setNumbersState, outputState, setOu
         Array.isArray(numbersState) ? setNumbersState(number) : setNumbersState(numbersState + number)
 
         // (Array.isArray(operatorsState)) ? setOutputState(number) : math(number)
-    }}>
-      {/* Display a button element rendering the data being passed down from the parent container on props */
-      number}
-    </button>
+    }}>{number}</button>
   )
 }
 
