@@ -8,27 +8,54 @@ import Specials from './components/ButtonComponents/SpecialButtons/Specials'
 import Display from './components/DisplayComponents/Display'
 
 function App() {
-  const [outputState, setOutputState] = useState(0)
-  const [num, setNum] = useState(0)
-  const [secNum, setSecNum] = useState(0)
+  const [outputState, setOutputState] = useState('0')
+  const [num, setNum] = useState('0')
+  const [secNum, setSecNum] = useState('')
   const [op, setOp] = useState('')
+  const [secOp, setSecOp] = useState('')
   const [spec, setSpec] = useState('')
+  const [answer, setAnswer] = useState('')
 
-  function math(numInput) {
-    const intNum1 = parseInt(outputState)
-    const intNum2 = parseInt(numInput)
-  
-    // if (operatorsState === '+') setOutputState(intNum1 + intNum2)
-    // else if (operatorsState === '-') setOutputState(intNum1 - intNum2)
-    // else if (operatorsState === '*') setOutputState(intNum1 * intNum2)
-    // else if (operatorsState === '/') setOutputState(intNum1 / intNum2)
-    // else if (operatorsState === '=') setOutputState(intNum1)
-    // else if (!operatorsState) return
+  function Operations() {
+    const intNum1 = parseInt(num)
+    const intNum2 = parseInt(secNum)
+
+    switch(secOp) {
+      case '+':
+        console.log('addition ran')
+        setNum(intNum2 + intNum1)
+        setSecNum(intNum2 + intNum1)
+        setSecOp('')
+        break
+      case '-':
+        console.log('subtraction ran')
+        setNum(intNum2 - intNum1)
+        setSecNum(intNum2 - intNum1)
+        setSecOp('')
+        break
+      case '*':
+        console.log('multiplication ran')
+        setNum(intNum2 * intNum1)
+        setSecNum(intNum2 * intNum1)
+        setSecOp('')
+        break
+      case '/':
+        console.log('division ran')
+        setNum(intNum2 / intNum1)
+        setSecNum(intNum2 / intNum1)
+        setSecOp('')
+        break
+      case '=':
+        console.log('equals')
+        setOp('')
+        setSecOp('')
+        break
+      default:
+    }
   }
 
   useEffect(() => {
     setOutputState(num)
-    // if()
   },[num])
 
   return (
@@ -38,9 +65,9 @@ function App() {
       <div className="App">
         <div>
           <Specials />
-          <Numbers outputState={outputState} setOutputState={setOutputState} math={math} />
+          <Numbers num={num} setNum={setNum} op={op} setOp={setOp} setSecOp={setSecOp}/>
         </div>
-        <Operators />
+        <Operators op={op} setOp={setOp} num={num} secNum={secNum} setSecNum={setSecNum} Operations={Operations}/>
       </div>
     </div>
   );

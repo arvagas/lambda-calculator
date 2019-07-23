@@ -1,8 +1,14 @@
 import React from "react"
 
-const OperatorButton = ({operator, setOperatorsState}) => {
+const OperatorButton = ({operator, setOp, num, secNum, setSecNum, Operations}) => {
   return (
-    <button className='operator-button' value={operator.value} onClick={() => setOperatorsState(operator.value)}>{operator.char}</button>
+    <button className='operator-button' value={operator.value} onClick={() => {
+      if (secNum!=='') {
+        Operations();
+      }
+      setSecNum(num)
+      setOp(operator.value)
+    }}>{operator.char}</button>
   )
 }
 

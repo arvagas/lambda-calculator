@@ -1,11 +1,13 @@
 import React from "react"
 
-const NumberButton = ({number, numbersState, setNumbersState, outputState, setOutputState, operatorsState, math}) => {
+const NumberButton = ({number, num, setNum, op, setOp, setSecOp}) => {
   return (
     <button className='number-button' value={number} onClick={() => {
-        Array.isArray(numbersState) ? setNumbersState(number) : setNumbersState(numbersState + number)
-
-        // (Array.isArray(operatorsState)) ? setOutputState(number) : math(number)
+      if (op !== '') {
+        setSecOp(op);
+        setOp('');
+        (number!=='.') ? setNum(number) : setNum(`0${number}`);
+      } else ((num==='0') && (number!=='.')) ? setNum(number) : setNum(num + number)
     }}>{number}</button>
   )
 }
