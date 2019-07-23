@@ -16,41 +16,36 @@ function App() {
   const [spec, setSpec] = useState('')
 
   function Operations() {
-    const intNum1 = parseInt(num)
-    const intNum2 = parseInt(secNum)
+    const intNum1 = parseFloat(num)
+    const intNum2 = parseFloat(secNum)
     let answer
 
     switch(secOp) {
       case '+':
-        console.log('addition ran')
         answer = intNum2 + intNum1
         setNum(answer)
         setSecNum(answer)
         setSecOp('')
         break
       case '-':
-        console.log('subtraction ran')
         answer = intNum2 - intNum1
         setNum(answer)
         setSecNum(answer)
         setSecOp('')
         break
       case '*':
-        console.log('multiplication ran')
         answer = intNum2 * intNum1
         setNum(answer)
         setSecNum(answer)
         setSecOp('')
         break
       case '/':
-        console.log('division ran')
         answer = intNum2 / intNum1
         setNum(answer)
         setSecNum(answer)
         setSecOp('')
         break
       case '=':
-        console.log('equals')
         setOp('')
         setSecOp('')
         break
@@ -59,9 +54,35 @@ function App() {
     }
   }
 
+  function SpecOps() {
+    const intNum = parseFloat(num)
+
+    switch(spec) {
+      case 'C':
+        setOutputState(0)
+        setNum(0)
+        setSecNum('')
+        setOp('')
+        setSecOp('')
+        setSpec('')
+        break
+      case '+/-':
+        let negPos = (intNum - (intNum*2))
+        setNum(negPos)
+        setSecNum(negPos)
+        setSpec('')
+        break
+      case '%':
+        setNum(intNum/100)
+        setSpec('')
+        break
+    }
+  }
+
   useEffect(() => {
     setOutputState(num)
-  },[num])
+    if (spec !== '') SpecOps()
+  },[num, spec])
 
   return (
     <div className="container">
@@ -69,7 +90,7 @@ function App() {
       <Display outputState={outputState}/>
       <div className="App">
         <div>
-          <Specials />
+          <Specials spec={spec} setSpec={setSpec} SpecOps={SpecOps}/>
           <Numbers num={num} setNum={setNum} op={op} setOp={setOp} setSecOp={setSecOp}/>
         </div>
         <Operators op={op} setOp={setOp} num={num} secNum={secNum} setSecNum={setSecNum} Operations={Operations}/>

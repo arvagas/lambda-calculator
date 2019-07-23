@@ -1,8 +1,10 @@
 import React from "react"
 
-const SpecialButton = ({special}) => {
+const SpecialButton = ({special, spec, setSpec, SpecOps}) => {
   return (
-    <button className='special-button'>{special}</button>
+    <button className='special-button' onClick={()=> {
+      setSpec(special)
+    }}>{special}</button>
   )
 }
 
