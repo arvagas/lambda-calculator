@@ -14,35 +14,39 @@ function App() {
   const [op, setOp] = useState('')
   const [secOp, setSecOp] = useState('')
   const [spec, setSpec] = useState('')
-  const [answer, setAnswer] = useState('')
 
   function Operations() {
     const intNum1 = parseInt(num)
     const intNum2 = parseInt(secNum)
+    let answer
 
     switch(secOp) {
       case '+':
         console.log('addition ran')
-        setNum(intNum2 + intNum1)
-        setSecNum(intNum2 + intNum1)
+        answer = intNum2 + intNum1
+        setNum(answer)
+        setSecNum(answer)
         setSecOp('')
         break
       case '-':
         console.log('subtraction ran')
-        setNum(intNum2 - intNum1)
-        setSecNum(intNum2 - intNum1)
+        answer = intNum2 - intNum1
+        setNum(answer)
+        setSecNum(answer)
         setSecOp('')
         break
       case '*':
         console.log('multiplication ran')
-        setNum(intNum2 * intNum1)
-        setSecNum(intNum2 * intNum1)
+        answer = intNum2 * intNum1
+        setNum(answer)
+        setSecNum(answer)
         setSecOp('')
         break
       case '/':
         console.log('division ran')
-        setNum(intNum2 / intNum1)
-        setSecNum(intNum2 / intNum1)
+        answer = intNum2 / intNum1
+        setNum(answer)
+        setSecNum(answer)
         setSecOp('')
         break
       case '=':
@@ -51,6 +55,7 @@ function App() {
         setSecOp('')
         break
       default:
+        console.log('Operations did not run.')
     }
   }
 
