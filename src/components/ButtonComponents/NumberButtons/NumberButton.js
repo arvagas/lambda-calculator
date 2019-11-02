@@ -1,9 +1,15 @@
-import React from "react";
+import React from "react"
 
-const NumberButton = () => {
+const NumberButton = ({number, num, setNum, op, setOp, setSecOp}) => {
   return (
-    <>
-      {/* Display a button element rendering the data being passed down from the parent container on props */}
-    </>
-  );
-};
+    <button className='number-button' value={number} onClick={() => {
+      if (op !== '') {
+        setSecOp(op);
+        setOp('');
+        (number!=='.') ? setNum(number) : setNum(`0${number}`);
+      } else ((num==='0') && (number!=='.')) ? setNum(number) : setNum(num + number)
+    }}>{number}</button>
+  )
+}
+
+export default NumberButton

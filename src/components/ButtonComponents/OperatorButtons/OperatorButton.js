@@ -1,9 +1,16 @@
-import React from "react";
+import React from "react"
 
-const OperatorButton = () => {
+const OperatorButton = ({operator, setOp, num, secNum, setSecNum, Operations}) => {
   return (
-    <>
-      {/* Display a button element rendering the data being passed down from the parent container on props */}
-    </>
-  );
-};
+    <button className='operator-button' value={operator.value} onClick={() => {
+      if (secNum!=='') {
+        Operations();
+      } else {
+        setSecNum(num);
+      }
+      setOp(operator.value);
+    }}>{operator.char}</button>
+  )
+}
+
+export default OperatorButton
